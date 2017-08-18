@@ -31,31 +31,3 @@ function __dontWorryAboutThis(){
 	return __createBookStore(__booksArray);
 
 } //Don't pay any attention to the man behind the curtain in lines 1-30. Remember, the leading underscores in the variable names mean you shouldn't be messing with these variables.
-
-function testUser(){
-	var balance = Math.random() * 100 + 130;
-		balance = parseFloat(balance.toString().slice(0, 4), 10);
-	return {
-		balance: balance,
-		cart: [],
-	}
-}
-
-function checkStore(searchTerm){
-	for(var i = 0; i < BookStore.length; i++) {
-	  if (searchTerm.toLowerCase() === BookStore[i].title.toLowerCase()){
-        var pstring = "We found your book! " +BookStore[i].title+", by "+BookStore[i].author+". It costs "+BookStore[i].price+".";
-				prompt(pstring + "\n\nWould you like to add it to your cart?");
-        return;
-		}
-	}
-	alert("Your title isn't found.")
-	return; //Needed?
-}
-
-var BookStore = __dontWorryAboutThis();
-var Susan = testUser();
-
-console.log(Susan);
-searchTerm = prompt("What book are you looking for?");
-checkStore(searchTerm);
