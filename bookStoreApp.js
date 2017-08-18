@@ -45,7 +45,10 @@ function checkStore(searchTerm){
 	for(var i = 0; i < BookStore.length; i++) {
 	  if (searchTerm.toLowerCase() === BookStore[i].title.toLowerCase()){
         var pstring = "We found your book! " +BookStore[i].title+", by "+BookStore[i].author+". It costs "+BookStore[i].price+".";
-				prompt(pstring + "\n\nWould you like to add it to your cart?");
+				var choice = prompt(pstring + "\n\nWould you like to add it to your cart?");
+				if(choice.toLowerCase() === 'yes'){
+					Susan.cart.push(BookStore[i]);
+				}
         return;
 		}
 	}
@@ -56,6 +59,18 @@ function checkStore(searchTerm){
 var BookStore = __dontWorryAboutThis();
 var Susan = testUser();
 
+Susan.deleteBook = function(bookName) {
+	for(var i = 0; i < Susan.cart.length; i++) {
+		if(bookName.toLowerCase() === Susan.cart[i].title.toLowerCase()){
+			if(confirm("Do you want to remove "+Susan.cart[i].title+" from your cart?")){
+				Susan.cart.splice(i,1);
+			}
+		}
+	}
+}
+
 console.log(Susan);
 searchTerm = prompt("What book are you looking for?");
 checkStore(searchTerm);
+Susan.deleteBook(searchTerm);
+console.log(Susan);
